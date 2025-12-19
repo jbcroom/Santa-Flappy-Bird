@@ -13,8 +13,8 @@
             <h1>Flappy Santa</h1>
             <p>Click or press Space to fly!</p>
             <div class="speed-control">
-                <label for="speedSelect">Game Speed:</label>
-                <select id="speedSelect">
+                <label for="speedSelectStart">Game Speed:</label>
+                <select id="speedSelectStart">
                     <option value="0.5">Slow (0.5x)</option>
                     <option value="1" selected>Normal (1x)</option>
                     <option value="1.5">Fast (1.5x)</option>
@@ -26,6 +26,15 @@
         <div id="gameOverScreen" class="screen hidden">
             <h1>Game Over!</h1>
             <p>Score: <span id="finalScore">0</span></p>
+            <div class="speed-control">
+                <label for="speedSelectRestart">Game Speed:</label>
+                <select id="speedSelectRestart">
+                    <option value="0.5">Slow (0.5x)</option>
+                    <option value="1" selected>Normal (1x)</option>
+                    <option value="1.5">Fast (1.5x)</option>
+                    <option value="2">Insane (2x)</option>
+                </select>
+            </div>
             <button id="restartButton">Play Again</button>
         </div>
         <div id="score" class="hidden">0</div>

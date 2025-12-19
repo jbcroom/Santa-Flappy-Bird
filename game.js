@@ -6,7 +6,8 @@ const scoreDisplay = document.getElementById('score');
 const finalScoreDisplay = document.getElementById('finalScore');
 const startButton = document.getElementById('startButton');
 const restartButton = document.getElementById('restartButton');
-const speedSelect = document.getElementById('speedSelect');
+const speedSelectStart = document.getElementById('speedSelectStart');
+const speedSelectRestart = document.getElementById('speedSelectRestart');
 const speedIndicator = document.getElementById('speedIndicator');
 
 let gameState = 'start';
@@ -214,7 +215,15 @@ function startGame() {
     frameCount = 0;
     chimneys.length = 0;
     santa.reset();
-    gameSpeed = parseFloat(speedSelect.value);
+
+    const activeSelector = startScreen.classList.contains('hidden')
+        ? speedSelectRestart
+        : speedSelectStart;
+    gameSpeed = parseFloat(activeSelector.value);
+
+    speedSelectStart.value = gameSpeed;
+    speedSelectRestart.value = gameSpeed;
+
     scoreDisplay.textContent = score;
     speedIndicator.textContent = `Speed: ${gameSpeed}x`;
 
