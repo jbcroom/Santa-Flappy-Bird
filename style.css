@@ -93,3 +93,56 @@ button:active {
 #score.hidden {
     display: none;
 }
+
+.speed-control {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.speed-control label {
+    font-size: 18px;
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.speed-control select {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #FFFFFF;
+    color: #333;
+    border: 2px solid #FFD700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.speed-control select:hover {
+    border-color: #FFA500;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.speed-control select:focus {
+    outline: none;
+    border-color: #FF0000;
+}
+
+#speedIndicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+#speedIndicator.hidden {
+    display: none;
+}

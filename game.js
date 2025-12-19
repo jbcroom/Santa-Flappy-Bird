@@ -6,10 +6,13 @@ const scoreDisplay = document.getElementById('score');
 const finalScoreDisplay = document.getElementById('finalScore');
 const startButton = document.getElementById('startButton');
 const restartButton = document.getElementById('restartButton');
+const speedSelect = document.getElementById('speedSelect');
+const speedIndicator = document.getElementById('speedIndicator');
 
 let gameState = 'start';
 let score = 0;
 let frameCount = 0;
+let gameSpeed = 1;
 
 const santa = {
     x: 80,
@@ -75,7 +78,7 @@ class Chimney {
         this.maxHeight = canvas.height - this.gap - this.minHeight;
         this.topHeight = Math.random() * (this.maxHeight - this.minHeight) + this.minHeight;
         this.bottomY = this.topHeight + this.gap;
-        this.speed = 2;
+        this.baseSpeed = 2;
         this.scored = false;
     }
 
@@ -106,7 +109,7 @@ class Chimney {
     }
 
     update() {
-        this.x -= this.speed;
+        this.x -= this.baseSpeed * gameSpeed;
     }
 
     offScreen() {
@@ -171,7 +174,8 @@ function updateGame() {
 
     santa.update();
 
-    if (frameCount % 150 === 0) {
+    const spawnInterval = Math.floor(150 / gameSpeed);
+    if (frameCount % spawnInterval === 0) {
         spawnChimney();
     }
 
@@ -210,11 +214,14 @@ function startGame() {
     frameCount = 0;
     chimneys.length = 0;
     santa.reset();
+    gameSpeed = parseFloat(speedSelect.value);
     scoreDisplay.textContent = score;
+    speedIndicator.textContent = `Speed: ${gameSpeed}x`;
 
     startScreen.classList.add('hidden');
     gameOverScreen.classList.add('hidden');
     scoreDisplay.classList.remove('hidden');
+    speedIndicator.classList.remove('hidden');
 
     gameLoop();
 }
@@ -226,6 +233,7 @@ function gameOver() {
     finalScoreDisplay.textContent = score;
     gameOverScreen.classList.remove('hidden');
     scoreDisplay.classList.add('hidden');
+    speedIndicator.classList.add('hidden');
 }
 
 canvas.addEventListener('click', () => {
